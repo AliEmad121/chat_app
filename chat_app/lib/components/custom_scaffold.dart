@@ -1,4 +1,5 @@
 import 'package:chat_app/components/custom_appbar.dart';
+import 'package:chat_app/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:iconsax/iconsax.dart';
@@ -19,7 +20,8 @@ class _CustomScaffoldState extends State<CustomScaffold> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset?? false,
+        child: Scaffold(backgroundColor: AppColors.white,
+          resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset?? false,
       appBar: CustomAppBar(title:widget.title,centerTitle: widget.centerTitle,leading:widget.leading, actions: widget.actions,),
       body: widget.body,
       
