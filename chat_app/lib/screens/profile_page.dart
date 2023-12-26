@@ -1,7 +1,9 @@
 import 'package:chat_app/components/custom_scaffold.dart';
 import 'package:chat_app/constants/app_colors.dart';
 import 'package:chat_app/constants/app_routes.dart';
+import 'package:chat_app/controllers/chat_controller.dart';
 import 'package:chat_app/controllers/navigation_controller.dart';
+import 'package:chat_app/controllers/signed_user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -16,8 +18,11 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   final NavigationController navigationController =
       Get.put(NavigationController());
+        final SignedUserController signedUserController = Get.put(SignedUserController());
+
   @override
   Widget build(BuildContext context) {
+    ChatController chatController = Get.put(ChatController());
     return CustomScaffold(leading: IconButton(
             onPressed: () {
             
@@ -47,8 +52,8 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ),
         SizedBox(height: 20),
-        Text("User Name", style: Theme.of(context).textTheme.headlineMedium),
-        Text("User Name", style: TextStyle(color: AppColors.grey),),
+        Text(signedUserController.username, style: Theme.of(context).textTheme.headlineMedium),
+        Text("${signedUserController.username}@gmail.com", style: TextStyle(color: AppColors.grey),),
         SizedBox(height: 20),
         GestureDetector(onTap: (){ showDialog(
                             context: context,
@@ -64,7 +69,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                       child: Text("Cancel")),
                                   TextButton(
                                       onPressed: () {
-                                       
+                                    chatController.comm!.messages.clear();
+                                    navigationController.changePage(0);
                                         Get.offAllNamed(AppRoutes.loginPage);
                                       },
                                       child: Text("Logout"))

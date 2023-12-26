@@ -1,3 +1,4 @@
+import 'package:chat_app/constants/app_colors.dart';
 import 'package:chat_app/controllers/navigation_controller.dart';
 import 'package:chat_app/screens/chat_page.dart';
 import 'package:chat_app/screens/contacts_page.dart';
@@ -19,7 +20,7 @@ class HomeNavBar extends StatefulWidget {
 
 class _HomeNavBarState extends State<HomeNavBar> {
   int _selectedIndex = 0;
-  static const List<Widget> _widgetOptions = <Widget>[
+  static  List<Widget> _widgetOptions = <Widget>[
     ContactPage(),
     ChatPage(),
     ProfilePage(),
@@ -38,15 +39,15 @@ class _HomeNavBarState extends State<HomeNavBar> {
         }),
       bottomNavigationBar: Obx(
          () {
-          return GNav(
+          return GNav(backgroundColor: AppColors.grey.withOpacity(0.1),
               rippleColor: Colors.grey[300]!,
               hoverColor: Colors.grey[100]!,
               gap: 8,
               activeColor: Colors.black,
-              iconSize: 24,
+              iconSize: Get.width * 0.07,
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
               duration: Duration(milliseconds: 400),
-              tabBackgroundColor: Colors.grey[100]!,
+              tabBackgroundColor: Colors.grey[300]!,
               color: Colors.black,
               tabs: [
                 GButton(

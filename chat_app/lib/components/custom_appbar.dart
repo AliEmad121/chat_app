@@ -31,7 +31,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       // your customization here
       title: Text(
         '$title',
-        style: GoogleFonts.roboto( color: AppColors.black)
+        style: GoogleFonts.poppins( color: AppColors.black)
       ),
       leading: leading??null,
       centerTitle: centerTitle?? false,
