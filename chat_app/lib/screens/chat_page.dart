@@ -78,20 +78,20 @@ class ChatPage extends StatelessWidget {
               itemBuilder: (context, index) {
                 final message = controller.comm!.messages[index];
                 return Align(
-                  alignment: message.senderId == 0
+                  alignment: message.isSent=="true"
                       ? Alignment.centerLeft
                       : Alignment.centerRight,
                   child: Container(
                     width: Get.width * 0.4,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: message.senderId == 0
+                        color: message.isSent=="true"
                             ? AppColors.blue.withOpacity(0.1)
                             : AppColors.grey.withOpacity(0.1)),
                     child: ListTile(
                       visualDensity: VisualDensity.standard,
-                      title: message.senderId == 1
-                          ? Text(message.receiverId.toString())
+                      title: message.isSent=="true"
+                          ? Text(message.senderName!)
                           : Text(signedUserController.username),
                       subtitle: Text(message.msg),
         
@@ -116,7 +116,7 @@ class ChatPage extends StatelessWidget {
                       suffixIcon: IconButton(
                           onPressed: () {
                             if (msgController.text.isNotEmpty) {
-                              chatController.comm!.sendMessage(msgController.text);
+                              chatController.comm!.sendMessage(msgController.text, true,"");
                               msgController.clear();
                             }
                             // FocusScope.of(context).unfocus();

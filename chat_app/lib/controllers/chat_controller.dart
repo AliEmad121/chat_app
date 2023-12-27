@@ -1,28 +1,3 @@
-// import 'package:chat_app/services/communication.dart';
-// import 'package:get/get.dart';
-
-// class ChatController extends GetxController{
-
-
-//   Communication? comm;
-
-
-//  @override
-//   void onInit() async{
-//    comm = Communication(
-//       onUpdate: () {
-       
-//       },
-//     );
-//     await comm!.startServe();
-//     super.onInit();
-//   }
-
-
-  
-
-
-// }
 
 import 'package:chat_app/services/communication.dart';
 import 'package:get/get.dart';

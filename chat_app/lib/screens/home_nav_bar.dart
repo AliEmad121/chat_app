@@ -52,16 +52,16 @@ class _HomeNavBarState extends State<HomeNavBar> {
               tabs: [
                 GButton(
                   icon: Icons.home_outlined,
-                  text: 'Contacts',
+                  
                   
                 ),GButton(
                   icon: Icons.chat_outlined,
-                  text: 'Chats',
+                 
                  
                 ),
                 GButton(
                   icon: Icons.person_outlined,
-                  text: 'Profile',
+                
                   
                 ),
                

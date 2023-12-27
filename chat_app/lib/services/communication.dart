@@ -1,15 +1,16 @@
 import 'dart:io';
 
+import 'package:chat_app/controllers/signed_user_controller.dart';
+import 'package:get/get.dart';
+
 class Message {
-
-    final int receiverId;
-  final int senderId;
-
+final String? senderName;
+ final String? isSent;
   final String? ip;
   final String msg;
-  Message(this.ip, this.msg, this.receiverId, this.senderId);
+  Message(this.ip, this.msg, this.isSent, this.senderName, );
   @override
-  String toString() => '{ $receiverId, $senderId, $ip, $msg}';
+  String toString() => '{  $ip, $msg, $isSent, $senderName}';
 }
 
 class Communication {
@@ -17,7 +18,8 @@ class Communication {
   final int port;
   final List<Message> messages = [];
   final Function()? onUpdate;
-
+final SignedUserController signedUserController =
+      Get.put(SignedUserController());
   // Hard coded, needs improvement
   Future<String?> myLocalIp() async {
     final interfaces =
@@ -49,12 +51,14 @@ class Communication {
     final msg = request.uri.queryParameters['msg'];
   
     final from = request.uri.queryParameters['ip'];
-     final receiverId =int.parse(request.uri.queryParameters['receiverId'] ?? '1');
-  final senderId = int.parse(request.uri.queryParameters['senderId'] ?? '0');
+    final isSent=request.uri.queryParameters['isSent'];
+    final senderName=request.uri.queryParameters['senderName'];
+
+   
     if (msg != null) {
       messages.add( 
       // Message(from ?? '', msg ?? '')
-      Message(from, msg ?? '',receiverId,senderId)
+      Message(from, msg ?? '', isSent,senderName)
       
       
       );
@@ -63,12 +67,12 @@ class Communication {
   }
 
   // Send message all
-  void sendMessage(String msg) async {
+  void sendMessage(String msg, bool isSent, String senderName) async {
     final ip = await myLocalIp();
     final threeOctet = ip!.substring(0, ip.lastIndexOf('.'));
-      final senderId = 0;
+      
     for (var i = 1; i < 200; i++) {
-      _sendRequest('$threeOctet.$i', "?ip=$ip&senderId=$senderId&msg=$msg");
+      _sendRequest('$threeOctet.$i', "?ip=$ip&senderName=$senderName&msg=$msg&isSent=$isSent");
     }
   }
 
