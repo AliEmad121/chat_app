@@ -11,13 +11,13 @@ class ChatController extends GetxController {
   @override
   void onInit() async {
     comm = Communication(
-      onUpdate: _handleMessageUpdate,
+      onUpdate: handleMessageUpdate,
     );
     await comm!.startServer();
     super.onInit();
   }
 
-  void _handleMessageUpdate() {
+  void handleMessageUpdate() {
     // Update the messages list when new messages arrive
     messages.addAll(comm!.messages);
     scrollToBottom();

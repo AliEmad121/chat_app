@@ -1,4 +1,5 @@
 import 'package:chat_app/components/custom_scaffold.dart';
+import 'package:chat_app/components/custom_snackbar.dart';
 import 'package:chat_app/constants/app_colors.dart';
 import 'package:chat_app/controllers/chat_controller.dart';
 import 'package:chat_app/controllers/navigation_controller.dart';
@@ -18,7 +19,7 @@ class ChatPage extends StatelessWidget {
     TextEditingController msgController = TextEditingController();
     final SignedUserController signedUserController =
         Get.put(SignedUserController());
-
+Message messagee;
     return PopScope(
       canPop: false,
       onPopInvoked: (value) {
@@ -35,14 +36,17 @@ class ChatPage extends StatelessWidget {
             )),
         actions: [
          
-          IconButton(
-              onPressed: () {
-                chatController.onInit();
-              },
-              icon: Icon(
-                Iconsax.refresh,
-                color: AppColors.black,
-              )),
+          // IconButton(
+          //     onPressed: () {
+          //       chatController.comm!.startServer();
+          //       chatController.handleMessageUpdate();
+          //       customSnackbar("Success", "ReConnected Successfully" ,);
+             
+          //     },
+          //     icon: Icon(
+          //       Iconsax.refresh,
+          //       color: AppColors.black,
+          //     )),
         ],
         title: "Chats",
         body: GetBuilder<ChatController>(builder: (ChatController controller) {
