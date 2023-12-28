@@ -12,6 +12,8 @@ import 'package:get_storage/get_storage.dart';
 void main() async{
     await GetStorage.init(); // Initialize GetStorage before runApp
   runApp(const MainApp());
+   
+
   
 }
 

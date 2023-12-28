@@ -23,66 +23,72 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     ChatController chatController = Get.put(ChatController());
-    return CustomScaffold(leading: IconButton(
-            onPressed: () {
-            
-              setState(() {
+    return PopScope(canPop: false,onPopInvoked: (value){ setState(() {
                    navigationController.selectedIndex.value = 0;
-              });
-            },
-            icon: Icon(
-              Icons.arrow_back,
-              color: AppColors.black,
-            )),
-      title: "Profile",
-      body: Column(children: [
-        SizedBox(height: Get.height * 0.1),
-        Center(
-          child: Container(
-            width: 120,
-            height: 120,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(40),
-              color: AppColors.grey.withOpacity(0.2),
-              image: DecorationImage(
-                  fit: BoxFit.fill,
-                  image: AssetImage(
-                    "assets/images/avatar.png",
-                  )),
+              });},
+      child: CustomScaffold(leading: IconButton(
+              onPressed: () {
+              
+                setState(() {
+                     navigationController.selectedIndex.value = 0;
+                });
+              },
+              icon: Icon(
+                Icons.arrow_back,
+                color: AppColors.black,
+              )),
+        title: "Profile",
+        body: Column(children: [
+          SizedBox(height: Get.height * 0.1),
+          Center(
+            child: Container(
+              width: 120,
+              height: 120,
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(40),
+                color: AppColors.grey.withOpacity(0.2),
+                image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: AssetImage(
+                      "assets/images/avatar.png",
+                    )),
+              ),
             ),
           ),
-        ),
-        SizedBox(height: 20),
-        Text(signedUserController.username, style: Theme.of(context).textTheme.headlineMedium),
-        Text("${signedUserController.username}@gmail.com", style: TextStyle(color: AppColors.grey),),
-        SizedBox(height: 20),
-        GestureDetector(onTap: (){ showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                title: Text("Logout"),
-                                content: Text("Are you sure you want to logout?"),
-                                actions: [
-                                  TextButton(
-                                      onPressed: () {
-                                        Get.back();
-                                      },
-                                      child: Text("Cancel")),
-                                  TextButton(
-                                      onPressed: () {
-                                    chatController.comm!.messages.clear();
-                                    navigationController.changePage(0);
-                                        Get.offAllNamed(AppRoutes.loginPage);
-                                      },
-                                      child: Text("Logout"))
-                                ],
-                              );
-                            });
-                      
-                    },
-          child: Row(mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text("LogOut"),SizedBox(width: 10,), Icon(Icons.logout)],),
-        )
-      ]),
+          SizedBox(height: 20),
+          Text(signedUserController.username, style: Theme.of(context).textTheme.headlineLarge),
+          Text("${signedUserController.username}@gmail.com", style: TextStyle(color: AppColors.grey,fontSize: 17),),
+          SizedBox(height: 20),
+         
+             InkWell(onTap: (){showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: Text("Logout"),
+                                  content: Text("Are you sure you want to logout?"),
+                                  actions: [
+                                    TextButton(
+                                        onPressed: () {
+                                          Get.back();
+                                        },
+                                        child: Text("Cancel",style: TextStyle(color: AppColors.black))),
+                                    TextButton(
+                                        onPressed: () {
+                                      chatController.comm!.messages.clear();
+                                      navigationController.changePage(0);
+                                          Get.offAllNamed(AppRoutes.loginPage);
+                                        },
+                                        child: Text("Logout",style: TextStyle(color: AppColors.red)))
+                                  ],
+                                );
+                              });},
+               child: Container(width: Get.width*0.3,decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
+                 child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                  children: [Text("LogOut",style: TextStyle(color: AppColors.red)),SizedBox(width: 10,), Icon(Icons.logout,color:AppColors.red,)],),
+               ),
+             ),
+          
+        ]),
+      ),
     );
   }
 }

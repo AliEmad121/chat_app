@@ -31,11 +31,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       // your customization here
       title: Text(
         '$title',
-        style: GoogleFonts.poppins( color: AppColors.black)
+        style: TextStyle( color: AppColors.black,fontSize: 20),
       ),
       leading: leading??null,
       centerTitle: centerTitle?? false,
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.grey.withOpacity(0.2),
       actions: actions,
     );
   }
