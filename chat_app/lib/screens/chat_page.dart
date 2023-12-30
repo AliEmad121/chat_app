@@ -36,17 +36,17 @@ Message messagee;
             )),
         actions: [
          
-          // IconButton(
-          //     onPressed: () {
-          //       chatController.comm!.startServer();
-          //       chatController.handleMessageUpdate();
-          //       customSnackbar("Success", "ReConnected Successfully" ,);
+          IconButton(
+              onPressed: () {
+                chatController.comm!.startServer();
+                chatController.handleMessageUpdate();
+                customSnackbar("Success", "Reconnected Successfully" ,);
              
-          //     },
-          //     icon: Icon(
-          //       Iconsax.refresh,
-          //       color: AppColors.black,
-          //     )),
+              },
+              icon: Icon(
+                Iconsax.refresh,
+                color: AppColors.black,
+              )),
         ],
         title: "Chats",
         body: GetBuilder<ChatController>(builder: (ChatController controller) {

@@ -31,6 +31,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return  GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       home: LoginPage(),routes: {
 
         AppRoutes.homePage:(context) => HomeNavBar(),
