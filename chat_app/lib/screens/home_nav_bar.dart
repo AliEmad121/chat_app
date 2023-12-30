@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import 'package:iconsax/iconsax.dart';
 
@@ -20,10 +21,14 @@ class HomeNavBar extends StatefulWidget {
 
 class _HomeNavBarState extends State<HomeNavBar> {
   int _selectedIndex = 0;
+
+
   static  List<Widget> _widgetOptions = <Widget>[
     ContactPage(),
     ChatPage(),
     ProfilePage(),
+    
+      
    
   ];
 
@@ -39,7 +44,8 @@ class _HomeNavBarState extends State<HomeNavBar> {
         }),
       bottomNavigationBar: Obx(
          () {
-          return GNav(backgroundColor: AppColors.grey.withOpacity(0.1),
+          return GNav(
+            backgroundColor: AppColors.green.withOpacity(0.1),
               rippleColor: Colors.grey[300]!,
               hoverColor: Colors.grey[100]!,
               gap: 8,

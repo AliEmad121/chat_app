@@ -9,7 +9,7 @@ class Message {
 final String senderId;
 final String senderName;
   final String? ip;
-  final String msg;
+  final String msg;   
   Message(this.ip, this.msg, this.senderId, this.senderName );
   @override
   String toString() => '{ $senderId,$senderName, $ip, $msg, }';
@@ -44,7 +44,7 @@ final SignedUserController signedUserController =
     final ip = await myLocalIp();
     var server = await HttpServer.bind(ip, port,shared: true,);
     print('Listening on $ip:${server.port}');
-    await for (HttpRequest request in server) {
+    await for ( HttpRequest request in server) {
       handleRequest(request);
       request.response.write('Ok');
       await request.response.close();
