@@ -6,37 +6,38 @@ import 'package:chat_app/constants/app_constant.dart';
 import 'package:chat_app/constants/app_routes.dart';
 import 'package:chat_app/controllers/login_controller.dart';
 import 'package:chat_app/controllers/signed_user_controller.dart';
+import 'package:chat_app/controllers/signup_controller.dart';
 import 'package:chat_app/screens/home_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-class LoginPage extends StatefulWidget {
-  LoginPage({super.key});
+class SignupPage extends StatefulWidget {
+  SignupPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignupPage> createState() => _SignupPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  TextEditingController emailAddressController = TextEditingController();
-
+class _SignupPageState extends State<SignupPage> {
+  TextEditingController UserNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  final LoginController loginController = Get.put(LoginController());
-  final SignedUserController signedUserController =
-      Get.put(SignedUserController());
+  TextEditingController confirmPasswordController = TextEditingController();
+  final SignupController signupController = Get.put(SignupController());
+
   Duration duration = Duration(milliseconds: 1500);
   bool isObscure = true;
   bool isUserNameValid = false;
   bool isPasswordValid = false;
   bool isLoading = false;
   final _formKey = GlobalKey<FormState>();
+  final box = GetStorage();
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
       resizeToAvoidBottomInset: true,
       centerTitle: true,
-      title: "Login Page",
+      title: "SignUp Page",
       body: SingleChildScrollView(
         child: Center(
           child: Padding(
@@ -51,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
                     textInputAction: TextInputAction.next,
                     labelText: "User Name",
                     keyboardType: TextInputType.emailAddress,
-                    controller: emailAddressController,
+                    controller: UserNameController,
                     validator: (value) {
                       return value!.isEmpty
                           ? 'Please, Enter User Name'
@@ -74,13 +75,35 @@ class _LoginPageState extends State<LoginPage> {
                     labelText: "Password",
                     keyboardType: TextInputType.text,
                     controller: passwordController,
-                    validator: (value) {
-                      return value!.isEmpty
-                          ? 'Please, Enter Password'
-                          : AppConstants.passwordRegex.hasMatch(value)
-                              ? null
-                              : 'Invalid Password';
-                    },
+                    obscureText: isObscure,
+                    suffixIcon: Padding(
+                      padding: const EdgeInsets.only(right: 15),
+                      child: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            isObscure = !isObscure;
+                          });
+                        },
+                        style: ButtonStyle(
+                          minimumSize: MaterialStateProperty.all(
+                            const Size(48, 48),
+                          ),
+                        ),
+                        icon: Icon(
+                          isObscure
+                              ? Icons.visibility_off_outlined
+                              : Icons.visibility_outlined,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  CustomTextField(
+                    textInputAction: TextInputAction.next,
+                    labelText: "Confirm Password",
+                    keyboardType: TextInputType.text,
+                    controller: confirmPasswordController,
                     obscureText: isObscure,
                     suffixIcon: Padding(
                       padding: const EdgeInsets.only(right: 15),
@@ -117,48 +140,55 @@ class _LoginPageState extends State<LoginPage> {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30)))),
                         onPressed: () {
-                          
-                          if (emailAddressController.text.isNotEmpty) {
-                            if (passwordController.text == "1234") {
-                              loginController.login(context);
+                          if (UserNameController.text.isNotEmpty &&
+                              passwordController.text ==
+                                  confirmPasswordController.text) {
+                            box.write('username', "${UserNameController.text}");
+                            box.write('password', "${passwordController.text}");
+                            print(box.read('username'));
+                            print(box.read('password'));
 
-                              signedUserController
-                                  .signIn(emailAddressController.text);
-                              print(signedUserController.username);
-                            } else {
-                              Get.snackbar(
-                                colorText: AppColors.white,
-                                "Error",
-                                "Check User Name And Password",
-                                backgroundColor:
-                                    AppColors.black.withOpacity(0.8),
-                                dismissDirection: DismissDirection.up,
-                              );
-                            }
+                            Get.snackbar(
+                              colorText: AppColors.white,
+                              "Success",
+                              "User Created Successfully",
+                              backgroundColor: AppColors.black.withOpacity(0.8),
+                              dismissDirection: DismissDirection.up,
+                            );
+                            signupController.signup(context);
                           } else {
                             Get.snackbar(
                               colorText: AppColors.white,
                               "Error",
-                              "Check User Name And Password",
+                              "Check Your Information",
                               backgroundColor: AppColors.black.withOpacity(0.8),
                               dismissDirection: DismissDirection.up,
                             );
                           }
                         },
-                        child: loginController.isLoading.value
+                        child: signupController.isLoading.value
                             ? CircularProgressIndicator(
                                 backgroundColor: AppColors.white,
                                 color: AppColors.grey.withOpacity(0.6),
                               )
                             : Text(
-                                'Login',
+                                'SignUp',
                                 style: TextStyle(
                                     color: AppColors.white, fontSize: 18),
                               ))),
                   ),
                   SizedBox(height: 20),
-Row(children: [Text('Don\'t have an account?'),TextButton(onPressed: (){Get.toNamed(AppRoutes.signupPage);}, child: Text('Sign Up'),)],)
-                  
+                  Row(
+                    children: [
+                      Text('Have an account?'),
+                      TextButton(
+                        onPressed: () {
+                          Get.toNamed(AppRoutes.loginPage);
+                        },
+                        child: Text('Login'),
+                      )
+                    ],
+                  )
                 ]),
           ),
         ),

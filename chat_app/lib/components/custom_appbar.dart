@@ -24,7 +24,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   });
  final NavigationController navigationController = Get.put(NavigationController());
 
- final ExitController exitController = Get.put(ExitController());
   @override
   Widget build(BuildContext context) {
     return AppBar(

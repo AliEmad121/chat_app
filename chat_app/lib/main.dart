@@ -4,6 +4,7 @@ import 'package:chat_app/screens/contacts_page.dart';
 import 'package:chat_app/screens/home_nav_bar.dart';
 import 'package:chat_app/screens/login_page.dart';
 import 'package:chat_app/screens/profile_page.dart';
+import 'package:chat_app/screens/signup_page.dart';
 import 'package:chat_app/services/communication.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -36,9 +37,11 @@ class _MainAppState extends State<MainApp> {
 
         AppRoutes.homePage:(context) => HomeNavBar(),
         AppRoutes.loginPage:(context) => LoginPage(),
+        AppRoutes.signupPage:(context) => SignupPage(),
         AppRoutes.chatPage:(context) => ChatPage(), 
         AppRoutes.contactPage:(context) => ContactPage(),
         AppRoutes.profilePage:(context) => ProfilePage(),
+
       },
     );
   }
