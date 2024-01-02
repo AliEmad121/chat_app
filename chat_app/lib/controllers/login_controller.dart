@@ -1,11 +1,14 @@
 import 'package:chat_app/constants/app_routes.dart';
+import 'package:chat_app/main.dart';
 import 'package:chat_app/screens/home_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
+  List<String> users = [];
+  final prefs = SharedPreferences.getInstance();
   RxBool isLoading = false.obs;
-  
 
   Future<void> login(context) async {
     isLoading.value = true;
@@ -17,7 +20,7 @@ class LoginController extends GetxController {
 
     isLoading.value = false;
 
-  Navigator.of(context).push(_createRoute());
+    Navigator.of(context).push(_createRoute());
   }
 }
 

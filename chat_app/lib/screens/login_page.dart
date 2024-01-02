@@ -117,11 +117,13 @@ class _LoginPageState extends State<LoginPage> {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30)))),
                         onPressed: () {
-                          
                           if (emailAddressController.text.isNotEmpty) {
                             if (passwordController.text == "1234") {
                               loginController.login(context);
-
+                              //save users into local storage
+                              loginController.users.add(
+                                emailAddressController.text,
+                              );
                               signedUserController
                                   .signIn(emailAddressController.text);
                               print(signedUserController.username);
@@ -157,8 +159,17 @@ class _LoginPageState extends State<LoginPage> {
                               ))),
                   ),
                   SizedBox(height: 20),
-Row(children: [Text('Don\'t have an account?'),TextButton(onPressed: (){Get.toNamed(AppRoutes.signupPage);}, child: Text('Sign Up'),)],)
-                  
+                  Row(
+                    children: [
+                      Text('Don\'t have an account?'),
+                      TextButton(
+                        onPressed: () {
+                          Get.toNamed(AppRoutes.signupPage);
+                        },
+                        child: Text('Sign Up'),
+                      )
+                    ],
+                  )
                 ]),
           ),
         ),
