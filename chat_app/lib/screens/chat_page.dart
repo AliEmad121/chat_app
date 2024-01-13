@@ -13,19 +13,27 @@ import 'package:iconsax/iconsax.dart';
 class ChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     final NavigationController navigationController =
         Get.put(NavigationController());
+
     final ChatController chatController = Get.put(ChatController());
+
     TextEditingController msgController = TextEditingController();
+
     final SignedUserController signedUserController =
         Get.put(SignedUserController());
+
+
 Message messagee;
+
     return PopScope(
       canPop: false,
       onPopInvoked: (value) {
         navigationController.selectedIndex.value = 0;
       },
       child: CustomScaffold(
+        
         leading: IconButton(
             onPressed: () {
               navigationController.selectedIndex.value = 0;
@@ -35,7 +43,8 @@ Message messagee;
               color: AppColors.black,
             )),
         actions: [
-         
+
+        
           IconButton(
               onPressed: () {
                 chatController.comm!.startServer();
@@ -47,8 +56,9 @@ Message messagee;
                 Iconsax.refresh,
                 color: AppColors.black,
               )),
+              
         ],
-        title: "Chats",
+        title: "message.senderName",
         body: GetBuilder<ChatController>(builder: (ChatController controller) {
           return Column(children: [
             SizedBox(height: Get.height * 0.001),
@@ -74,6 +84,7 @@ Message messagee;
                               : AppColors.grey.withOpacity(0.65)),
                       child: ListTile(
                         onLongPress: () async {
+                          
                           await Clipboard.setData(
                               ClipboardData(text: message.msg));
                           // copied successfully

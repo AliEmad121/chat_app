@@ -158,16 +158,19 @@ class _LoginPageState extends State<LoginPage> {
                                     color: AppColors.white, fontSize: 18),
                               ))),
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(
+                    height: 15,
+                  ),
                   Row(
                     children: [
-                      Text('Don\'t have an account?'),
+
+                      Text("Dont have account?"),
                       TextButton(
-                        onPressed: () {
-                          Get.toNamed(AppRoutes.signupPage);
-                        },
-                        child: Text('Sign Up'),
-                      )
+                          onPressed: () {
+                            Get.toNamed(AppRoutes.signupPage);
+                            
+                          },
+                          child: Text("Signup",style:TextStyle(fontSize: 20) ,))
                     ],
                   )
                 ]),

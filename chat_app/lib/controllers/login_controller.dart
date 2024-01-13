@@ -21,7 +21,9 @@ class LoginController extends GetxController {
     isLoading.value = false;
 
     Navigator.of(context).push(_createRoute());
+    
   }
+  
 }
 
 Route _createRoute() {
