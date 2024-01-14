@@ -120,12 +120,18 @@ class _LoginPageState extends State<LoginPage> {
                           if (emailAddressController.text.isNotEmpty) {
                             if (passwordController.text == "1234") {
                               loginController.login(context);
+
                               //save users into local storage
-                              loginController.users.add(
-                                emailAddressController.text,
-                              );
+
+                              UserModel user = UserModel(
+                                  username: emailAddressController.text,
+                                  userId: signedUserController.userId);
+                              loginController.users.add(user);
+                              print(
+                                  "=========================${loginController.users.length}");
                               signedUserController
                                   .signIn(emailAddressController.text);
+                              loginController.saveDataToShared();
                               print(signedUserController.username);
                             } else {
                               Get.snackbar(
