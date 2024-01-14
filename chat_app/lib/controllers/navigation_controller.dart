@@ -4,5 +4,6 @@ class NavigationController extends GetxController {
 
   void changePage(int index) {
     selectedIndex.value = index;
+    
   }
 }

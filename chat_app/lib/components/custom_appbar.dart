@@ -1,6 +1,6 @@
 import 'package:app_minimizer/app_minimizer.dart';
 import 'package:chat_app/constants/app_colors.dart';
-import 'package:chat_app/controllers/exit_controller.dart';
+
 import 'package:chat_app/controllers/navigation_controller.dart';
 import 'package:flutter/material.dart';
 

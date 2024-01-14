@@ -26,7 +26,7 @@ class ChatController extends GetxController {
   }
 
   void scrollToBottom() {
-    scrollController.animateTo(
+    scrollController.animateTo(  
       scrollController.position.maxScrollExtent+110,
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeOut,
@@ -37,5 +37,6 @@ class ChatController extends GetxController {
     comm!.messages.add(message);
     scrollToBottom(); // Scroll to the bottom when a new message is added
     update();
+  
   }
 }

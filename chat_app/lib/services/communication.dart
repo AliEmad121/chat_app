@@ -9,8 +9,10 @@ class Message {
 final String senderId;
 final String senderName;
   final String? ip;
-  final String msg;   
+  final String msg; 
+    
   Message(this.ip, this.msg, this.senderId, this.senderName );
+
   @override
   String toString() => '{ $senderId,$senderName, $ip, $msg, }';
 }
@@ -64,7 +66,7 @@ final SignedUserController signedUserController =
    
     if (msg != null) {
       messages.add( 
-      // Message(from ?? '', msg ?? '')
+     
       Message(from, msg ?? '', senderId ?? '', senderName ?? '')
       
       
