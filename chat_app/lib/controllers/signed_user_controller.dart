@@ -7,6 +7,9 @@ class SignedUserController extends GetxController {
   final _isSignedIn = false.obs;
   final _username = ''.obs;
   final _userId=''.obs;
+  String selfCallerID='';
+  
+
 
   bool get isSignedIn => _isSignedIn.value;
   String get username => _username.value;

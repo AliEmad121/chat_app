@@ -1,12 +1,9 @@
-import 'package:app_minimizer/app_minimizer.dart';
 import 'package:chat_app/constants/app_colors.dart';
 
 import 'package:chat_app/controllers/navigation_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:iconsax/iconsax.dart';
 
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {

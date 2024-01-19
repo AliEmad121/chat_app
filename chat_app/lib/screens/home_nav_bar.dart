@@ -1,8 +1,10 @@
 import 'package:chat_app/constants/app_colors.dart';
 import 'package:chat_app/controllers/navigation_controller.dart';
+import 'package:chat_app/controllers/signed_user_controller.dart';
 import 'package:chat_app/screens/chat_page.dart';
 import 'package:chat_app/screens/contacts_page.dart';
 import 'package:chat_app/screens/profile_page.dart';
+import 'package:chat_app/services/signaling_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -31,11 +33,17 @@ class _HomeNavBarState extends State<HomeNavBar> {
       
    
   ];
-
+final SignedUserController signedUserController =
+      Get.put(SignedUserController());
  final NavigationController navigationController = Get.put(NavigationController());
-
+   // signalling server url
+  static final String websocketUrl = "ws://192.168.31.249:5000";
   @override
   Widget build(BuildContext context) {
+     SignallingService.instance.init(
+      websocketUrl: websocketUrl,
+      selfCallerID: "10",
+    );
     return Scaffold(
 
 

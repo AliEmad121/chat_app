@@ -26,6 +26,8 @@ class Communication {
   final Function()? onUpdate;
 final SignedUserController signedUserController =
       Get.put(SignedUserController());
+
+  get senderName => "";
   // Hard coded, needs improvement
   Future<String?> myLocalIp() async {
           

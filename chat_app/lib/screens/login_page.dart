@@ -1,18 +1,16 @@
 import 'package:chat_app/components/custom_scaffold.dart';
-import 'package:chat_app/components/custom_snackbar.dart';
 import 'package:chat_app/components/custom_text_form.dart';
 import 'package:chat_app/constants/app_colors.dart';
 import 'package:chat_app/constants/app_constant.dart';
 import 'package:chat_app/constants/app_routes.dart';
 import 'package:chat_app/controllers/login_controller.dart';
 import 'package:chat_app/controllers/signed_user_controller.dart';
-import 'package:chat_app/screens/home_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({super.key});
+
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -124,6 +122,8 @@ class _LoginPageState extends State<LoginPage> {
                               loginController.users.add(
                                 emailAddressController.text,
                               );
+                              
+                              
                               signedUserController
                                   .signIn(emailAddressController.text);
                               print(signedUserController.username);
