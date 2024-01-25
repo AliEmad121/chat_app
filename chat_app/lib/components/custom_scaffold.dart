@@ -1,8 +1,6 @@
 import 'package:chat_app/components/custom_appbar.dart';
 import 'package:chat_app/constants/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:iconsax/iconsax.dart';
 
 class CustomScaffold extends StatefulWidget {
   CustomScaffold(

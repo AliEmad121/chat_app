@@ -11,7 +11,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget>? actions;
   final Widget? leading;
   final double height = 50;
-  bool? centerTitle;
+ final bool? centerTitle;
 
   CustomAppBar({
     this.title,

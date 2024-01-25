@@ -7,11 +7,8 @@ import 'package:chat_app/screens/profile_page.dart';
 import 'package:chat_app/services/signaling_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 
-import 'package:iconsax/iconsax.dart';
 
 
 class HomeNavBar extends StatefulWidget {
@@ -22,22 +19,15 @@ class HomeNavBar extends StatefulWidget {
 }
 
 class _HomeNavBarState extends State<HomeNavBar> {
-  int _selectedIndex = 0;
 
 
-  static  List<Widget> _widgetOptions = <Widget>[
-    ContactPage(),
-    ChatPage(),
-    ProfilePage(),
-    
-      
-   
-  ];
+
+ 
 final SignedUserController signedUserController =
       Get.put(SignedUserController());
  final NavigationController navigationController = Get.put(NavigationController());
    // signalling server url
-  static final String websocketUrl = "ws://192.168.31.249:5000";
+  static const String websocketUrl = "ws://192.168.31.249:5000";
   @override
   Widget build(BuildContext context) {
      SignallingService.instance.init(
@@ -59,11 +49,11 @@ final SignedUserController signedUserController =
               gap: 8,
               activeColor: Colors.black,
               iconSize: Get.width * 0.07,
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-              duration: Duration(milliseconds: 400),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              duration: const Duration(milliseconds: 400),
               tabBackgroundColor: Colors.grey[300]!,
               color: Colors.black,
-              tabs: [
+              tabs: const [
                 GButton(
                   icon: Icons.home_outlined,
                   
@@ -97,14 +87,14 @@ final SignedUserController signedUserController =
  Widget _buildPage(int index) {
     switch (index) {
       case 0:
-        return ContactPage();
+        return const ContactPage();
       case 1:
         return ChatPage();
         case 2:
-        return ProfilePage();
+        return const ProfilePage();
         
        
       default:
-        return CircularProgressIndicator(); // Handle invalid index
+        return const CircularProgressIndicator(); // Handle invalid index
     }
   }

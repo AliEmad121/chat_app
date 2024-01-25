@@ -1,14 +1,10 @@
-import 'dart:math';
 import 'package:chat_app/constants/app_routes.dart';
-import 'package:chat_app/controllers/signed_user_controller.dart';
 import 'package:chat_app/screens/chat_page.dart';
 import 'package:chat_app/screens/contacts_page.dart';
 import 'package:chat_app/screens/home_nav_bar.dart';
-import 'package:chat_app/screens/join_screen.dart';
 import 'package:chat_app/screens/login_page.dart';
 import 'package:chat_app/screens/profile_page.dart';
 import 'package:chat_app/screens/signup_page.dart';
-import 'package:chat_app/services/signaling_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -20,11 +16,11 @@ WidgetsFlutterBinding.ensureInitialized();
   sharedPreferences = await SharedPreferences.getInstance();
 
   await GetStorage.init(); // Initialize GetStorage before runApp
-  runApp( MainApp());
+  runApp( const MainApp());
 }
 
 class MainApp extends StatelessWidget {
-   MainApp({super.key});
+   const MainApp({super.key});
 
 
  
@@ -37,15 +33,15 @@ class MainApp extends StatelessWidget {
     return GetMaterialApp(
       
       debugShowCheckedModeBanner: false,
-      home: LoginPage( ),
+      home: const LoginPage( ),
       routes: {
        
-        AppRoutes.homePage: (context) => HomeNavBar(),
-        AppRoutes.loginPage: (context) => LoginPage( ),
+        AppRoutes.homePage: (context) => const HomeNavBar(),
+        AppRoutes.loginPage: (context) => const LoginPage( ),
         AppRoutes.signupPage: (context) => SignupPage(),
         AppRoutes.chatPage: (context) => ChatPage(),
-        AppRoutes.contactPage: (context) => ContactPage(),
-        AppRoutes.profilePage: (context) => ProfilePage(),
+        AppRoutes.contactPage: (context) => const ContactPage(),
+        AppRoutes.profilePage: (context) => const ProfilePage(),
         // AppRoutes.joinPage: (context) => JoinScreen(selfCallerId: selfCallerID),
       },
      

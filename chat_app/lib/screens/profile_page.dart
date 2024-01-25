@@ -53,7 +53,7 @@ class _ProfilePageState extends State<ProfilePage> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(40),
                 color: AppColors.grey.withOpacity(0.2),
-                image: DecorationImage(
+                image: const DecorationImage(
                     fit: BoxFit.fill,
                     image: AssetImage(
                       "assets/images/avatar.png",
@@ -61,22 +61,22 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Text(signedUserController.username,
               style: Theme.of(context).textTheme.headlineLarge),
           Text(
             "${signedUserController.username}@gmail.com",
             style: TextStyle(color: AppColors.grey, fontSize: 17),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           InkWell(
             onTap: () {
               showDialog(
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: Text("Logout"),
-                      content: Text("Are you sure you want to logout?"),
+                      title: const Text("Logout"),
+                      content: const Text("Are you sure you want to logout?"),
                       actions: [
                         TextButton(
                             onPressed: () {
@@ -104,7 +104,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("LogOut", style: TextStyle(color: AppColors.red)),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Icon(

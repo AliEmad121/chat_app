@@ -7,6 +7,7 @@ class SocketController extends GetxController {
       Random().nextInt(10).toString().padLeft(2, '0');
   @override
   void onInit() {
+    super.onInit();
       SignallingService.instance.init(
       websocketUrl: websocketUrl,
       selfCallerID: selfCallerID,

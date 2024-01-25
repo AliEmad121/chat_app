@@ -42,11 +42,12 @@ class _ChatPageState extends State<ChatPage> {
   @override
   void initState() {
     super.initState();
-    // listen for incoming video call
+    // listen for incoming voice call
     SignallingService.instance.socket!.on("newCall", (data) {
       if (mounted) {
         // set SDP Offer of incoming call
         setState(() => incomingSDPOffer = data);
+        
       }
     });
   }
@@ -87,6 +88,7 @@ class _ChatPageState extends State<ChatPage> {
         leading: IconButton(
             onPressed: () {
               navigationController.selectedIndex.value = 0;
+             
             },
             icon: Icon(
               Icons.arrow_back,
@@ -158,6 +160,7 @@ class _ChatPageState extends State<ChatPage> {
                           icon: const Icon(Icons.call),
                           color: AppColors.green,
                           onPressed: () {
+                           
                             _joinCall(
                               callerId: incomingSDPOffer["callerId"]!,
                               calleeId: "10",
