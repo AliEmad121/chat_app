@@ -54,7 +54,7 @@ class _ContactPageState extends State<ContactPage> {
                           image: AssetImage("assets/images/avatar.png"),
                           fit: BoxFit.fill)),
                 ),
-                title: Text(loginController.users[index],
+                title: Text(loginController.users[index].username,
                     style: Theme.of(context).textTheme.headlineMedium),
                 subtitle: Row(
                   children: [

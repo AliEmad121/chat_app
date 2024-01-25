@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginPage extends StatefulWidget {
-  LoginPage({super.key});
+  const LoginPage({super.key});
 
 
   @override
@@ -23,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   final LoginController loginController = Get.put(LoginController());
   final SignedUserController signedUserController =
       Get.put(SignedUserController());
-  Duration duration = Duration(milliseconds: 1500);
+  Duration duration = const Duration(milliseconds: 1500);
   bool isObscure = true;
   bool isUserNameValid = false;
   bool isPasswordValid = false;
@@ -44,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Image.asset("assets/images/chat_logo.png"),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   CustomTextField(
                     textInputAction: TextInputAction.next,
                     labelText: "User Name",
@@ -66,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                       });
                     },
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   CustomTextField(
                     textInputAction: TextInputAction.next,
                     labelText: "Password",
@@ -102,8 +102,8 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 30),
-                  Container(
+                  const SizedBox(height: 30),
+                  SizedBox(
                     width: Get.width,
                     height: Get.height * 0.07,
                     child: Obx(() => ElevatedButton(
@@ -118,14 +118,23 @@ class _LoginPageState extends State<LoginPage> {
                           if (emailAddressController.text.isNotEmpty) {
                             if (passwordController.text == "1234") {
                               loginController.login(context);
+
                               //save users into local storage
-                              loginController.users.add(
-                                emailAddressController.text,
-                              );
+                              // loginController.users.add(
+                              //   // emailAddressController.text,
+                              // );
                               
                               
+
+                              // UserModel user = UserModel(
+                              //     username: emailAddressController.text,
+                              //     userId: signedUserController.userId);
+                              // loginController.users.add(user);
+                              print(
+                                  "=========================${loginController.users.length}");
                               signedUserController
                                   .signIn(emailAddressController.text);
+                              // loginController.saveDataToShared();
                               print(signedUserController.username);
                             } else {
                               Get.snackbar(
@@ -158,19 +167,18 @@ class _LoginPageState extends State<LoginPage> {
                                     color: AppColors.white, fontSize: 18),
                               ))),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   Row(
                     children: [
 
-                      Text("Dont have account?"),
+                      const Text("Dont have account?"),
                       TextButton(
                           onPressed: () {
                             Get.toNamed(AppRoutes.signupPage);
-                            
                           },
-                          child: Text("Signup",style:TextStyle(fontSize: 20) ,))
+                          child: const Text("Signup",style:TextStyle(fontSize: 20) ,),),
                     ],
                   )
                 ]),
