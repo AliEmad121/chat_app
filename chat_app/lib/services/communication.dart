@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:chat_app/controllers/signed_user_controller.dart';
 import 'package:get/get.dart';
 
@@ -54,7 +53,7 @@ final SignedUserController signedUserController =
       await request.response.close();
     }
   }
-
+// http://192.168.0.1:8080/?msg=Hello&&?senderId=10&&?senderName=ali
   // Handle the request
   void handleRequest(HttpRequest request) {
     // if query has a message then add to list

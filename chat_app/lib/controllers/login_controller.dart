@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class UserModel {
+  
   String username;
   String userId;
   UserModel({required this.username, required this.userId});
@@ -26,7 +27,7 @@ class UserModel {
 
 class LoginController extends GetxController {
   List<UserModel> users = [];
-
+bool isSignedIn = false;
   RxBool isLoading = false.obs;
 
   Future<void> saveDataToShared(List<UserModel> value) async {

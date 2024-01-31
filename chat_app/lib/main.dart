@@ -1,4 +1,5 @@
 import 'package:chat_app/constants/app_routes.dart';
+import 'package:chat_app/controllers/login_controller.dart';
 import 'package:chat_app/screens/chat_page.dart';
 import 'package:chat_app/screens/contacts_page.dart';
 import 'package:chat_app/screens/home_nav_bar.dart';
@@ -15,25 +16,22 @@ void main() async {
 WidgetsFlutterBinding.ensureInitialized();
   sharedPreferences = await SharedPreferences.getInstance();
 
-  await GetStorage.init(); // Initialize GetStorage before runApp
-  runApp( const MainApp());
+ 
+  runApp( MainApp());
 }
 
 class MainApp extends StatelessWidget {
-   const MainApp({super.key});
+    MainApp({super.key});
 
-
+LoginController loginController = Get.put(LoginController());
  
 
   @override
   Widget build(BuildContext context) {
-   
-   
-   
     return GetMaterialApp(
-      
+      title: "Chat App",
       debugShowCheckedModeBanner: false,
-      home: const LoginPage( ),
+      home: loginController.isSignedIn ? const HomeNavBar() : const LoginPage( ),
       routes: {
        
         AppRoutes.homePage: (context) => const HomeNavBar(),
@@ -42,7 +40,7 @@ class MainApp extends StatelessWidget {
         AppRoutes.chatPage: (context) => ChatPage(),
         AppRoutes.contactPage: (context) => const ContactPage(),
         AppRoutes.profilePage: (context) => const ProfilePage(),
-        // AppRoutes.joinPage: (context) => JoinScreen(selfCallerId: selfCallerID),
+       
       },
      
     );

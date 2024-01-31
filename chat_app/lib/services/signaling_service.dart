@@ -12,8 +12,7 @@ class SignallingService {
     // init Socket
     socket = io(websocketUrl, {
       "transports": ['websocket'],
-      "query": {"callerId": selfCallerID,
-                
+      "query": {"callerId": selfCallerID,      
       
       }
     });

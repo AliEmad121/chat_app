@@ -110,11 +110,7 @@ class _ChatPageState extends State<ChatPage> {
               )),
           IconButton(
               onPressed: () {
-                // Get.to(
-                //  JoinScreen(
-                //       selfCallerId: signedUserController.selfCallerID,
-                //     ),
-                // );
+               
                 _joinCall(
                   callerId: "10",
                   calleeId: "10",
@@ -245,23 +241,19 @@ class _ChatPageState extends State<ChatPage> {
                               signedUserController.username);
                               msgController.clear();
                           // Save the message before clearing the controller
-                          saveMessage(
-                            signedUserController.userId,
-                            signedUserController
-                                .username, // Replace with the actual receiver's user ID
-                            msgController.text,
+                          // saveMessage(
+                          //   signedUserController.userId,
+                          //   signedUserController
+                          //       .username, // Replace with the actual receiver's user ID
+                          //   msgController.text,
                             
-                          );
-                            var savedMessages = getSavedMessages();
-                          print("Saved Messages: $savedMessages");
+                          // );
+                            // var savedMessages = getSavedMessages();
+                          // print("Saved Messages: $savedMessages");
                          
                           
                         }
-                        if (chatController.messages.isEmpty) {
-                          // Example of retrieving saved messages
-                          var savedMessages = getSavedMessages();
-                          print("Saved Messages: $savedMessages");
-                        }
+                        // c
                          msgController.clear();
                         // FocusScope.of(context).unfocus();
                       },

@@ -6,7 +6,7 @@ class AppRoutes {
   static const String profilePage = "/profilePage";
   static const String chatPage = "/chatPage";
   static const String contactPage = "/contactPage";
-  static const String joinPage = "/joinPage";
+
 
 }
 

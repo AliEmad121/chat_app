@@ -32,14 +32,14 @@ class _CallScreenState extends State<CallScreen> {
   // mediaStream for localPeer
   MediaStream? _localStream;
 
-  // RTC peer connection
+  // RTC peer connection" real time conncetion"
   RTCPeerConnection? _rtcPeerConnection;
 
-  // list of rtcCandidates to be sent over signalling
+  // list of rtcCandidates to be sent over signalling for web rtc 
   List<RTCIceCandidate> rtcIceCadidates = [];
 
   // media status
-  bool isAudioOn = true, isVideoOn = true, isFrontCameraSelected = true;
+  bool isAudioOn = true, isVideoOn = true, isFrontCameraSelected = false;
 
   @override
   void initState() {

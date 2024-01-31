@@ -3,6 +3,7 @@ import 'package:chat_app/components/custom_scaffold.dart';
 import 'package:chat_app/constants/app_colors.dart';
 import 'package:chat_app/constants/app_routes.dart';
 import 'package:chat_app/controllers/chat_controller.dart';
+import 'package:chat_app/controllers/login_controller.dart';
 import 'package:chat_app/controllers/navigation_controller.dart';
 import 'package:chat_app/controllers/signed_user_controller.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class _ProfilePageState extends State<ProfilePage> {
       Get.put(NavigationController());
   final SignedUserController signedUserController =
       Get.put(SignedUserController());
-
+final LoginController loginController = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
     ChatController chatController = Get.put(ChatController());
@@ -89,6 +90,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               chatController.comm!.messages.clear();
                               navigationController.changePage(0);
                               Get.offAllNamed(AppRoutes.loginPage);
+                              loginController.isSignedIn = false;
                             },
                             child: Text("Logout",
                                 style: TextStyle(color: AppColors.red)))

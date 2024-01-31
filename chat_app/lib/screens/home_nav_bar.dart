@@ -27,7 +27,7 @@ final SignedUserController signedUserController =
       Get.put(SignedUserController());
  final NavigationController navigationController = Get.put(NavigationController());
    // signalling server url
-  static const String websocketUrl = "ws://192.168.31.249:5000";
+  static const String websocketUrl = "ws://192.168.92.78:5000";
   @override
   Widget build(BuildContext context) {
      SignallingService.instance.init(

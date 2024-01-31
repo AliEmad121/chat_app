@@ -40,10 +40,7 @@ class _ContactPageState extends State<ContactPage> {
               color: AppColors.black,
             )),
         title: "Home",
-        body: ListView.builder(
-            itemCount: loginController.users.length,
-            itemBuilder: (BuildContext context, int index) {
-              return ListTile(
+        body:  ListTile(
                 leading: Container(
                   width: 50,
                   height: 50,
@@ -54,7 +51,7 @@ class _ContactPageState extends State<ContactPage> {
                           image: AssetImage("assets/images/avatar.png"),
                           fit: BoxFit.fill)),
                 ),
-                title: Text(loginController.users[index].username,
+                title: Text(signedUserController.username,
                     style: Theme.of(context).textTheme.headlineMedium),
                 subtitle: Row(
                   children: [
@@ -72,8 +69,8 @@ class _ContactPageState extends State<ContactPage> {
                     )
                   ],
                 ),
-              );
-            }),
+              )
+            
       ),
     );
   }
