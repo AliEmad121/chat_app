@@ -29,7 +29,7 @@ class LoginController extends GetxController {
   List<UserModel> users = [];
 bool isSignedIn = false;
   RxBool isLoading = false.obs;
-
+String? websocketUrl;
   Future<void> saveDataToShared(List<UserModel> value) async {
     List userModelToJson = value
         .map<Map<String, dynamic>>((answersModel) => answersModel.toJson())

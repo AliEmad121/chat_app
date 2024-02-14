@@ -20,6 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController emailAddressController = TextEditingController();
 
   TextEditingController passwordController = TextEditingController();
+  TextEditingController websocketUrlController = TextEditingController();
   final LoginController loginController = Get.put(LoginController());
   final SignedUserController signedUserController =
       Get.put(SignedUserController());
@@ -103,6 +104,13 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(height: 30),
+                  CustomTextField(
+                    textInputAction: TextInputAction.next,
+                    labelText: "websocketUrl",
+                    keyboardType: TextInputType.emailAddress,
+                    controller: websocketUrlController,hintText: "192.168.34.1:5000",
+                                                        ),
+                  const SizedBox(height: 10),
                   SizedBox(
                     width: Get.width,
                     height: Get.height * 0.07,
@@ -119,7 +127,7 @@ class _LoginPageState extends State<LoginPage> {
                             if (passwordController.text == "1234") {
                               loginController.login(context);
                               loginController.isSignedIn = true;
-                            
+                            loginController.websocketUrl=websocketUrlController.text;
 
                               //save users into local storage
                               // loginController.users.add(

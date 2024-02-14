@@ -3,9 +3,9 @@ const express = require('express');
 const http = require('http');
 const app = express();
 const server = http.createServer(app);
-let port = process.env.PORT || 5000;
+let port = process.env.PORT || 5000;//  192.168.170.78:5000
 
-// server.listen(port,'0.0.0.0',()=>{
+
 server.listen(port,()=>{
   // console.log(`Server started on server "0.0.0.0" port ${port}`)
   console.log(`Server started on server port ${port}`)
@@ -24,9 +24,6 @@ IO.use((socket, next) => {
     next();
   }
 });
-
-
-
 
 IO.on("connection", (socket) => {
   console.log(socket.user, "Connected");

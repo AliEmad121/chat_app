@@ -1,4 +1,5 @@
 import 'package:chat_app/constants/app_colors.dart';
+import 'package:chat_app/controllers/login_controller.dart';
 import 'package:chat_app/controllers/navigation_controller.dart';
 import 'package:chat_app/controllers/signed_user_controller.dart';
 import 'package:chat_app/screens/chat_page.dart';
@@ -22,16 +23,16 @@ class _HomeNavBarState extends State<HomeNavBar> {
 
 
 
- 
+ final LoginController loginController= Get.put(LoginController()); 
 final SignedUserController signedUserController =
       Get.put(SignedUserController());
  final NavigationController navigationController = Get.put(NavigationController());
+ 
    // signalling server url
-  static const String websocketUrl = "ws://192.168.92.78:5000";
   @override
   Widget build(BuildContext context) {
      SignallingService.instance.init(
-      websocketUrl: websocketUrl,
+      websocketUrl: "http://${loginController.websocketUrl!}",
       selfCallerID: "10",
     );
     return Scaffold(
@@ -42,6 +43,7 @@ final SignedUserController signedUserController =
         }),
       bottomNavigationBar: Obx(
          () {
+          print(loginController.websocketUrl);
           return GNav(
             backgroundColor: AppColors.green.withOpacity(0.1),
               rippleColor: Colors.grey[300]!,
