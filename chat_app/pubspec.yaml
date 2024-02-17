@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   app_minimizer: ^1.0.0+2
+  audioplayers: ^5.2.1
   flutter:
     sdk: flutter
   flutter_webrtc: ^0.9.20
@@ -19,6 +20,8 @@ dependencies:
   loading_animation_widget: ^1.2.0+4
   shared_preferences: ^2.2.2
   socket_io_client: ^2.0.3+1
+  ringtone_player: ^0.1.1
+  flutter_ringtone_player: ^3.2.0
   
 
 dev_dependencies:
@@ -31,3 +34,4 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/ringtones/

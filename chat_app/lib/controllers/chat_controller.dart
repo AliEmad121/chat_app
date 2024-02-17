@@ -1,42 +1,65 @@
+import 'package:chat_app/controllers/login_controller.dart';
+import 'package:chat_app/controllers/navigation_controller.dart';
+import 'package:chat_app/controllers/signed_user_controller.dart';
 import 'package:chat_app/services/communication.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ChatController extends GetxController {
-  final ScrollController scrollController = ScrollController();
-  Communication? comm;
+  ScrollController scrollController = ScrollController();
+  late final comm = Communication(
+    onUpdate: handleMessageUpdate,
+  );
 
   RxList<Message> messages = <Message>[].obs;
 
+  final navigationController = Get.put(NavigationController());
+  final msgController = TextEditingController();
+  final signedUserController = Get.put(SignedUserController());
+  final loginController = Get.put(LoginController());
+
   @override
   void onInit() async {
-    comm = Communication(
-      onUpdate: handleMessageUpdate,
-    );
-    await comm!.startServer();
+    await comm.startServer();
     super.onInit();
   }
 
-  void handleMessageUpdate() {
-    // Update the messages list when new messages arrive
-    messages.addAll(comm!.messages);
-    scrollToBottom();
-    // Trigger a state update, causing the UI to rebuild
-    update();
+  void handleMessageUpdate(Message msg) {
+    if (signedUserController.userId == msg.senderId) {
+      return;
+    }
+    addMessage(msg);
   }
+  
+
 
   void scrollToBottom() {
-    scrollController.animateTo(  
-      scrollController.position.maxScrollExtent+110,
+    scrollController.animateTo(
+      0,
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeOut,
     );
   }
 
-  void addMessage(message) {
-    comm!.messages.add(message);
-    scrollToBottom(); // Scroll to the bottom when a new message is added
+  addMessage(Message msg) {
+    // Update the messages list when new messages arrive
+    messages.insert(0, msg);
+    scrollToBottom();
+    // Trigger a state update, causing the UI to rebuild
     update();
-  
+  }
+
+  sendNewMessage() {
+    comm.sendMessage(msgController.text, signedUserController.userId,
+        signedUserController.username);
+    final msg = Message(
+      null,
+      msgController.text,
+      signedUserController.userId,
+      signedUserController.username,
+    );
+        msgController.clear();
+
+    addMessage(msg);
   }
 }

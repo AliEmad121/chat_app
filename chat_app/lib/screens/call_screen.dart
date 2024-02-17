@@ -5,10 +5,10 @@ import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class CallScreen extends StatefulWidget {
-  final String callerId, calleeId; 
+  final String callerId, calleeId;
 
   dynamic offer;
-   CallScreen({
+  CallScreen({
     super.key,
     this.offer,
     required this.callerId,
@@ -35,7 +35,7 @@ class _CallScreenState extends State<CallScreen> {
   // RTC peer connection" real time conncetion"
   RTCPeerConnection? _rtcPeerConnection;
 
-  // list of rtcCandidates to be sent over signalling for web rtc 
+  // list of rtcCandidates to be sent over signalling for web rtc
   List<RTCIceCandidate> rtcIceCadidates = [];
 
   // media status
@@ -173,7 +173,7 @@ class _CallScreenState extends State<CallScreen> {
 
   _leaveCall() {
     Navigator.pop(context);
-    widget.offer=null;
+    widget.offer = null;
     _rtcPeerConnection?.close();
   }
 
@@ -187,7 +187,6 @@ class _CallScreenState extends State<CallScreen> {
     setState(() {});
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -198,7 +197,7 @@ class _CallScreenState extends State<CallScreen> {
       body: Column(
         children: [
           Expanded(
-            child:Column(
+            child: Column(
               children: [
                 const SizedBox(height: 20),
                 Container(
@@ -215,30 +214,37 @@ class _CallScreenState extends State<CallScreen> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                Text("Calling User",style: TextStyle(color: AppColors.black,fontSize: 20),),
-SizedBox(height: 100,width: 100,
+                Text(
+                  "Calling User",
+                  style: TextStyle(color: AppColors.black, fontSize: 20),
+                ),
+                SizedBox(
+                  height: 100,
+                  width: 100,
                   child: LoadingAnimationWidget.prograssiveDots(
-                            color: AppColors.green,
-                            size: 100,
-                          ),
+                    color: AppColors.green,
+                    size: 100,
+                  ),
                 ),
               ],
             ),
-            
-          
           ),
-          
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 12),
-            child: Container(decoration: BoxDecoration(color: AppColors.grey.withOpacity(0.3),borderRadius: BorderRadius.circular(30)),
+            child: Container(
+              decoration: BoxDecoration(
+                  color: AppColors.grey.withOpacity(0.3),
+                  borderRadius: BorderRadius.circular(30)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  IconButton(color: AppColors.black,
+                  IconButton(
+                    color: AppColors.black,
                     icon: Icon(isAudioOn ? Icons.mic : Icons.mic_off),
                     onPressed: _toggleMic,
                   ),
-                  IconButton(color: AppColors.red,
+                  IconButton(
+                    color: AppColors.red,
                     icon: const Icon(Icons.call_end),
                     iconSize: 30,
                     onPressed: _leaveCall,

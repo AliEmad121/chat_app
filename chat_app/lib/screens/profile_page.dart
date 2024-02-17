@@ -87,10 +87,11 @@ final LoginController loginController = Get.put(LoginController());
                                 style: TextStyle(color: AppColors.black))),
                         TextButton(
                             onPressed: () {
-                              chatController.comm!.messages.clear();
+                              chatController.messages.clear();
                               navigationController.changePage(0);
                               Get.offAllNamed(AppRoutes.loginPage);
                               loginController.isSignedIn = false;
+                              
                             },
                             child: Text("Logout",
                                 style: TextStyle(color: AppColors.red)))

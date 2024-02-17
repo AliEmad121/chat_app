@@ -26,7 +26,7 @@ IO.use((socket, next) => {
 });
 
 IO.on("connection", (socket) => {
-  console.log(socket.user, "Connected");
+  console.log(socket.user, "User Connected");
   socket.join(socket.user);
 
   socket.on("makeCall", (data) => {
